@@ -4,7 +4,7 @@
 
 ## Begin 
 
-download project [here](https://github.com/codequickie123/custom_vids/tree/master/capybara_and_puffing_billy)
+download project [here](https://downgit.github.io/#/home?url=https://github.com/codequickie123/custom_vids/tree/master/capybara_and_puffing_billy)
 * at the end of this lab e2e should look like e2e_final 
 * if issues refer to e2e_start 
 
