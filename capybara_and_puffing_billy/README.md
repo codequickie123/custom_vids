@@ -1,17 +1,24 @@
 # Dealing with Advanced Bundler Issues with Puffing Billy 
 
+## [Youtube Video Walkthrough]()
 
 ## Begin 
 
-download [here]()
-## Issues
-* right now there was an issue bundler wanted me to report to github it was not able to properly install puffing billy
+download project [here](https://github.com/codequickie123/custom_vids/tree/master/capybara_and_puffing_billy)
+* at the end of this lab e2e should look like e2e_final 
+* if issues refer to e2e_start 
 
 ## Puffing Billy
 an http interceptor library, like burpsuite
 
+
+## Issues
+* right now there was an issue bundler wanted me to report to github it was not able to properly install puffing billy
+
+
 ## Situation 
-open AngularApp/src/testing/e2e
+head to AngularApp/src/testing/e2e
+open Gemfile in your code editor
 ```rb
 # frozen_string_literal: true
 
@@ -140,27 +147,24 @@ grab the win64, (unless on a 32bit win OS) Win64 OpenSSL v1.1.1i (NOT THE LIGHT 
 .msi unzip and install 
 remember local install	
 ```ps1
-bundle config build.eventmachine --with-ssl-dir=path/to/openssl
+bundle config build.eventmachine --verbose --with-ssl-dir=path/to/openssl
 bundle install 
 bundle exec rspec app-e2e.rb
 ```
 
 * sucess
 
-### Issues
+### Comments
 
 * if any issues or comments add here 
 * sometimes you have to delete the ruby folder and install the setup again, length but understand whats happening to do it less
 * if there are devkit issues [here](https://github.com/oneclick/rubyinstaller/wiki/Development-Kit)
-
+* the BUNDLE_BUILD__EVENTMACHINE with ssl dir might end up in another path
 
 
 
 
 ## Resources
-
-
-
 
 [Discussion](https://github.com/eventmachine/eventmachine/pull/601)
 [Capybara docs](https://rubydoc.info/github/teamcapybara/capybara/Capybara/Node/Finders)
