@@ -41,13 +41,14 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 # gem 'table_print'
 
 gem 'puffing-billy', :group => :test
-
 ```
+
 ### Keeping installations local to your project
 * keep installations local
 	* the --path is depercated 
+	* use vendor\bundle a bundler convention
 ```ps1
-bundle config set --local path .\ # windows current dir
+bundle config set --local path vendor\bundle
 bundle install
 ```
 
@@ -58,8 +59,12 @@ cant install puffing billy because file not found
 gem 'eventmachine'
 ```
 ```ps1
-bundle install
+bundle install # refer to .bundle/config to perform local install no worries
 ```
+
+
+### Using platforms
+
 
 * doesnt work mabye we need a different platform
 	* to see all avaible platforms give a bad platform name
@@ -72,19 +77,18 @@ gem 'eventmachine', :platforms => :ruby
 bundle install
 ```
 
-### Using platforms
 * we see that it seemed to ignore you and install the same platform
 	* this is because the whole bundle must come from the same package, cant expect dll to work on Linux neither .so or .sh to work on Windows, bundler is incomaptiable and if you force it by commenting and doing seperate installs, when you run an application in this instance it will throw an error, 
 * when you get PATH issues and FILE location issues in windows,send to upper level directory talk about the 
 * we learn about the  [manifest](https://docs.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation#enable-long-paths-in-windows-10-version-1607-and-later) that can override this please provide a pull requests to help implement this otherwise we take the whole project and move up some directory
-* 
+
 
 ```rb
 gem 'eventmachine'
 gem 'puffing-billy', :group => :test
 ```
 ```ps1
-bundle config set --local path .\  # do wee need to since its the relative path of .\, SAFE than sorry
+bundle config set --local path vendor\bundle  # do wee need to since its the relative path of .\, SAFE than sorry
 bundle install
 ```
 
@@ -97,7 +101,7 @@ bundle install
 
 * it wasn't enough wee see some low level modules are missing
 
-### Grabbing from a different source
+### Github
 * we see at the top of the Gemfile, we grab the eventmachine_httpserver lib from 
 https://github.com/eventmachine, lets use a different library
 * go to https://github.com/eventmachine_httpserver,
@@ -108,7 +112,7 @@ https://github.com/eventmachine, lets use a different library
 gem 'eventmachine_httpserver', github: "eventmachine/evma_httpserver"
 ```
 
-### Github
+
 * this requires git to be installed, but we dont do system installs use portable git for windows [here](https://git-scm.com/download/win)
 setup the 32-bit or 64-bit PORTABLE extract and place the Folder the PATH
 * restart the computer if need be
@@ -147,7 +151,7 @@ grab the win64, (unless on a 32bit win OS) Win64 OpenSSL v1.1.1i (NOT THE LIGHT 
 .msi unzip and install 
 remember local install	
 ```ps1
-bundle config build.eventmachine --verbose --with-ssl-dir=path/to/openssl
+bundle config build.eventmachine --local --verbose --with-ssl-dir=path/to/openssl
 bundle install 
 bundle exec rspec app-e2e.rb
 ```
