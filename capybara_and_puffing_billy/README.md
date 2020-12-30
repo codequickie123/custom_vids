@@ -1,6 +1,6 @@
 # Dealing with Advanced Bundler Issues with Puffing Billy 
 
-## [Youtube Video Walkthrough]()
+## [Youtube Video Walkthrough](https://youtu.be/q0tawoUMSQ4)
 
 ## Begin 
 
