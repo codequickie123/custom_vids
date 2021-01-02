@@ -1,7 +1,7 @@
 # Watchdog Python File Watcher
 
-## [Youtube Tutorial Here]()
-
+## [Youtube Tutorial Here](https://youtu.be/ouGI2_p0Bfo)
+## Download the Lab [Here](https://downgit.github.io/#/home?url=https://github.com/codequickie123/custom_vids/tree/master/watchdog_python_file_watcher)
 ## Pip Install
 ```ps1
 pip install watchdog --target .\site-packages
@@ -15,6 +15,8 @@ import time
 sys.path.append(sys.path[0] + "\\site-packages")
 from watchdog.events import LoggingEventHandler
 from watchdog.observers import Observer
+from importlib import reload
+# import your_sample_module_file chanllenge
 ```
 
 ## Do something on file changes
@@ -42,7 +44,38 @@ if __name__ == "__main__":
        
 ```
 
+## Challengee Can you guess what this does
+* watch the youtube video to find out
+```py
+class ModuleFinder(importlib.machinery.PathFinder):
+
+    def __init__(self):
+        self.path_map = {"tables":your_sample_module_file.__spec__.loader}
+
+    def find_spec(self, fullname, path, target=None):
+        
+        if not fullname in self.path_map:
+            return None
+        print(importlib.util.spec_from_loader(fullname,self.path_map[fullname] ))
+        return importlib.util.spec_from_loader(fullname, self.path_map[fullname])
+        # return ".\\tables.py"
+
+    def find_module(self, fullname, path):
+        return None # No need to implement, backward compatibility only
+
+sys.meta_path.append(ModuleFinder())
+print(sys.meta_path)
+
+
+while True:
+	importlib.reload(your_sample_module_file)
+	print(importlib.sample_var) # did it change :)))
+	time.sleep(2)
+```
+
 
 ### Resources
 
 [watchdog](https://pypi.org/project/watchdog/)
+[reload module hint](https://stackoverflow.com/questions/19009932/import-arbitrary-python-source-file-python-3-3)
+[setting up an importer](https://docs.python.org/3/library/importlib.html#setting-up-an-importer)
