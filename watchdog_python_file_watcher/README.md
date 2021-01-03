@@ -44,7 +44,7 @@ if __name__ == "__main__":
        
 ```
 
-## Challengee Can you guess what this does
+## Challenge Can you guess what this does
 * watch the youtube video to find out
 ```py
 class ModuleFinder(importlib.machinery.PathFinder):
@@ -68,8 +68,9 @@ print(sys.meta_path)
 
 
 while True:
+	# start to modify your_sample_module_file.py
 	importlib.reload(your_sample_module_file)
-	print(importlib.sample_var) # did it change :)))
+	print(your_sample_module_file.sample_var) # did it change :)))
 	time.sleep(2)
 ```
 
