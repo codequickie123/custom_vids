@@ -26,12 +26,7 @@ website.convertCMS = [
             {
                 "key": "schema-mode",
                 "type": "input",
-                "value":"Mode Type",
-                "newline":[
-                    "REPEATED",
-                    "REQUIRED",
-                    "NULLABLE"
-                ],
+                "value":"Enter Text Here",
                 "fontSize":"20",
                 "latch":"",
                 // "multipleGroup":"schemasInput",

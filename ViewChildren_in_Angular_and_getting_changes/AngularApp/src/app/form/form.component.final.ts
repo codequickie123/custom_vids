@@ -45,7 +45,7 @@ export class FormComponent implements OnInit  , AfterViewInit, OnDestroy {
 
 
     ngAfterViewInit(): void {
-
+        console.log(this.templateMyElements)
         // listen for element changes
         this.ryber.appEvents({
             typesES:this.typesES,
