@@ -1,5 +1,6 @@
 # Dropdown e2e testing with Angular and Capybara
 
+## Top level dropdown
 ## test that the select value is above the other options when open
 
 ```rb
@@ -100,6 +101,69 @@
 			end
 			#
 
+
+		end
+```
+
+### test with other elements, when open it at least displays over other components
+
+```rb
+		scenario  %{test with other elements, when open it at least displays over other components} do
+			select = first %{.f_o_r_m_my-dropdown-latch-dropdown-base}
+			options = capybara_result_to_array :target => (all %{.f_o_r_m_my-dropdown-latch-dropdown-base})
+			options = options.slice(1,4)
+			select.click
+
+			Capybara.ignore_hidden_elements = true
+			options
+			.each do |x|
+				x.click
+				select.click
+			end
+			Capybara.ignore_hidden_elements = false
+
+		end
+```
+
+## Nested Dropdown
+
+### test that all elements part of the dropdown are in the required container
+
+```rb
+		scenario %{test that all elements part of the dropdown are in the required container} do
+			dropdown = capybara_result_to_array :target => (all %{.f_o_r_m_my-first-dropdown-latch-dropdown-nesting})
+			container = first %{.f_o_r_m_my-first-dropdown-latch-dropdown-nesting-container}
+			dropdown
+			.each do |x|
+				expect(x.find(:xpath, '..')).to eq(container)
+			end
+
+```
+
+###  test with other elements, when open it at least displays over other elements
+```rb
+		scenario  %{test with other elements, when open it at least displays over other elements} do
+			select = first %{.f_o_r_m_my-first-dropdown-latch-dropdown-nesting}
+			options = capybara_result_to_array :target => (all %{.f_o_r_m_my-first-dropdown-latch-dropdown-nesting})
+			options = options.slice(1,10)
+			nest_container = first %{.f_o_r_m_my-overlay-latch-dropdown-nesting}
+			select.click
+
+			Capybara.ignore_hidden_elements = true
+			options
+			.each do |x|
+				begin
+					x.click
+					select.click
+				rescue => exception
+					# never gets here because e2e is smart enough to scroll there and see it
+					nest_container.scroll_to :align => :bottom
+					x.click
+					p x[:text]
+					select.click
+				end
+			end
+			Capybara.ignore_hidden_elements = false
 
 		end
 ```
